@@ -1,0 +1,74 @@
+<tool id="select_subsets" name="Select subsets" version="1.0.0" force_history_refresh="True">
+	<description>
+		Create dataset(s) of selections user has made from a tabular dataset.
+		A separate dataset is created for each group of selected items indicated
+		by third column [a group key].  Fourth column is unique incremented id for each row.
+
+		This tool can be used in combination with the Blast Reporting tool available
+		in the https://toolshed.g2.bx.psu.edu/ toolshed.
+
+		Produced by https://github.com/Public-Health-Bioinformatics
+	</description>
+	<command interpreter="python">
+        select_subsets.py $input $output1 $output1.id $__new_file_path__ $incl_excl $select
+	</command>
+	<inputs>
+		<param name="input" type="data" format="tabular" label="Numbered tabular input file"/>
+		<param name="incl_excl" type="select" format="text" label="Include or exclude selection?">
+			<option value="1">Include selection</option>
+			<option value="0">Exclude selection</option>
+		</param>
+		<param name="select" type="select" multiple="true" display="checkboxes" label="Select lines below">
+			<options from_dataset="input">
+				<column name="name" index="0"/>
+				<column name="value" index="-1"/>
+			</options>
+		</param>
+	</inputs>
+	<outputs>
+		<data name="output1" format="tabular" metadata_source="input" label="$tool.name on data $input.hid"/>
+	</outputs>
+	<tests>
+		<test>
+			<param name="input" value="test_select_subsets.tabular"/>
+                	<output name="output1" file="test_select_subsets_output.tabular"/>
+			<param name="select" values="2,4,5,17"/>			
+                	<param name="incl_excl" value="1"/>                                                
+		</test>	
+	</tests>
+	<help>
+
+.. class:: infomark
+
+**What it does**
+
+User selects groups of lines from a "Sequence Selection List" of tabular data rows.  
+Each group will be created in a separate history dataset.
+
+This tool can be used in conjunction with the BLAST Reporting tool's "Selectable HTML Report".  
+When that report is selected, the tool also produces a "Sequence Selection List" of queries and hits,
+which contains the necessary grouping and row index fields described below.  The HTML Report can directly
+submit selections to the Select Subsets tool for processing.  That functionality requires Galaxy administrator setup.
+
+----
+
+.. class:: warningmark
+
+Before using this tool, ensure the source tabular dataset has:
+
+	1) Incremented row number in last column.  You can use the tool 
+	**Add column to an existing dataset (Text Manipulation)** 
+	with the parameters **Add this value: 1** and **Iterate?: YES**.  
+	2) 2nd last column controls grouping:  If you want the tool to divide up your data 
+	into separate datasets of selections, include a short Grouping key (&lt;10 chars) in this column.  
+	If no grouping desired, leave this column empty. 
+
+----
+
+.. class:: warningmark
+
+Galaxy reads only the first 1 MB of the input tabular file to generate the checkbox options. If your file is larger than 1 MB, consider
+breaking it into smaller pieces before running this tool.
+
+	</help>
+</tool>
