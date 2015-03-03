@@ -8,9 +8,8 @@ Produced by https://github.com/Public-Health-Bioinformatics
 
 Before using this tool, ensure the source tabular dataset has:
 
-	1) Incremented row number in last column.  You can use the tool **Add column to an existing dataset (Text Manipulation)** 
-	with the parameters **Add this value: 1** and **Iterate?: YES**.  
-	2) 2nd last column controls grouping:  If you want the tool to divide up your data into separate datasets of selections, include a short Grouping key (&lt;10 chars) in this column.  If no grouping desired, leave this column empty. 
+1) Incremented row number in last column.  You can use the tool **Add column to an existing dataset (Text Manipulation)** with the parameters **Add this value: 1** and **Iterate?: YES**.
+2) 2nd last column controls grouping:  If you want the tool to divide up your data into separate datasets of selections, include a short Grouping key (&lt;10 chars) in this column.  If no grouping desired, leave this column empty. 
 
 ## Usage in conjunction with Blast Reporting tool
 
