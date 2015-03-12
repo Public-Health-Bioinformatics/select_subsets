@@ -14,7 +14,7 @@ Before using this tool, ensure the source tabular dataset has:
 
 ## Usage in conjunction with Blast Reporting tool
 
-This tool can be used in conjunction with the BLAST Reporting tool's "Selectable HTML Report".  When that report is selected, the tool also produces a "Sequence Selection List" of queries and hits, which contains the necessary grouping and row index fields described below.  The HTML Report can directly submit selections to the Select Subsets tool for processing.  That functionality requires Galaxy administrator setup.
+This tool can be used in conjunction with the BLAST Reporting tool's "Selectable HTML Report".  When that report is selected, the tool also produces a "Sequence Selection List" of queries and hits, which contains the necessary grouping and row index fields described above.  The HTML Report can directly submit selections to the Select Subsets tool for processing.  That functionality requires Galaxy administrator setup.
 
 ## Installation
 
